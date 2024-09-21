@@ -30,5 +30,3 @@ dependencyResolutionManagement {
         }
     }
 }
-
-include("sqlite-android")
