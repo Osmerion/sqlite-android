@@ -53,6 +53,18 @@ android {
         }
     }
 
+    testOptions {
+        managedDevices {
+            localDevices {
+                register("pixel2api30") {
+                    device = "Pixel 2"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                }
+            }
+        }
+    }
+
     publishing {
         singleVariant("release") {
             withJavadocJar()
