@@ -1,9 +1,9 @@
 import de.undercouch.gradle.tasks.download.Download
 
 plugins {
-    id("com.android.library")
+    alias(buildDeps.plugins.android.library)
+    alias(buildDeps.plugins.download)
     id("com.osmerion.maven-publish-conventions")
-    id("de.undercouch.download")
 }
 
 java {
@@ -112,11 +112,12 @@ publishing {
 }
 
 dependencies {
-    api("androidx.core:core:1.12.0")
-    api("androidx.sqlite:sqlite:2.4.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test:core:1.5.0")
-    androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.test:rules:1.5.0")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    api(libs.androidx.core)
+    api(libs.androidx.sqlite)
+
+    testImplementation(buildDeps.junit)
+    androidTestImplementation(buildDeps.androidx.test.core)
+    androidTestImplementation(buildDeps.androidx.test.runner)
+    androidTestImplementation(buildDeps.androidx.test.rules)
+    androidTestImplementation(buildDeps.androidx.test.ext.junit)
 }

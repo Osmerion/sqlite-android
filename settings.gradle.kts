@@ -23,6 +23,12 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+
+    versionCatalogs {
+        register("buildDeps") {
+            from(files("./gradle/build.versions.toml"))
+        }
+    }
 }
 
 include("sqlite-android")
