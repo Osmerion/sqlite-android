@@ -29,15 +29,15 @@ import java.util.Collections;
  * this library.
  */
 @SuppressWarnings("unused")
-public final class RequerySQLiteOpenHelperFactory implements SupportSQLiteOpenHelper.Factory {
+public final class OsmerionSQLiteOpenHelperFactory implements SupportSQLiteOpenHelper.Factory {
     private final Iterable<ConfigurationOptions> configurationOptions;
 
     @SuppressWarnings("WeakerAccess")
-    public RequerySQLiteOpenHelperFactory(Iterable<ConfigurationOptions> configurationOptions) {
+    public OsmerionSQLiteOpenHelperFactory(Iterable<ConfigurationOptions> configurationOptions) {
         this.configurationOptions = configurationOptions;
     }
 
-    public RequerySQLiteOpenHelperFactory() {
+    public OsmerionSQLiteOpenHelperFactory() {
         this(Collections.<ConfigurationOptions>emptyList());
     }
 
