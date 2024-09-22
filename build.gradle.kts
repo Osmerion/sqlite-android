@@ -1,8 +1,7 @@
-import de.undercouch.gradle.tasks.download.Download
+import com.osmerion.build.Download
 
 plugins {
     alias(buildDeps.plugins.android.library)
-    alias(buildDeps.plugins.download)
     id("com.osmerion.maven-publish-conventions")
 }
 
@@ -75,8 +74,13 @@ android {
 
 tasks {
     val downloadSqlite = register<Download>("downloadSqlite") {
-        src("https://www.sqlite.org/2024/sqlite-amalgamation-3450000.zip")
-        dest("src/main/jni/sqlite.zip")
+        src = "https://www.sqlite.org/2024/sqlite-amalgamation-3460100.zip"
+        dest = layout.buildDirectory.file("sqlite.zip")
+
+        checksum = "af6aae8d3eccc608857c63cf56efbadc70da48b5c719446b353ed88dded1e288"
+        hashingAlgorithm = "SHA3-256"
+
+        outputs.upToDateWhen { true }
     }
 
     val installSqlite = register<Copy>("installSqlite") {

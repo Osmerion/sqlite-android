@@ -15,7 +15,3 @@ junit = { module = "junit:junit", version = "4.13.2" }
 # com.android.library - Android Gradle Plugin
 # https://developer.android.com/build/gradle-build-overview
 android-library = { id = "com.android.library", version = "8.6.1" }
-
-# de.undercouch.download - Gradle Download Task
-# https://github.com/michel-kraemer/gradle-download-task
-download = { id = "de.undercouch.download", version = "5.6.0" }
