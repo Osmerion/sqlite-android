@@ -86,6 +86,8 @@ tasks {
     val installSqlite = register<Copy>("installSqlite") {
         dependsOn(downloadSqlite)
 
+        includeEmptyDirs = false
+
         from(zipTree(downloadSqlite.get().dest).matching {
             include("*/sqlite3.*")
             eachFile { path = name }
