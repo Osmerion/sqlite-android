@@ -22,6 +22,10 @@ jobs:
           distribution: "temurin"
           java-version: ${{ env.JDK_VERSION }}
 
+      - name: Accept Android SDK Licenses
+        shell: bash
+        run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
