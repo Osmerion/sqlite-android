@@ -116,16 +116,6 @@ tasks {
     preBuild {
         dependsOn(installSqlite)
     }
-
-    register<Javadoc>("javadoc") {
-        source(android.sourceSets["main"].java.srcDirs)
-
-        classpath += project.files(android.bootClasspath.joinToString(File.pathSeparator))
-
-        exclude("**/R.html", "**/R.*.html", "**/index.html")
-
-        isFailOnError = false
-    }
 }
 
 publishing {
