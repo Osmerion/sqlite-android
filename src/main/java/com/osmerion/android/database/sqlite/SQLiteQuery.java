@@ -20,9 +20,9 @@ package com.osmerion.android.database.sqlite;
 
 import android.database.sqlite.SQLiteDatabaseCorruptException;
 import android.database.sqlite.SQLiteException;
+import android.os.CancellationSignal;
+import android.os.OperationCanceledException;
 import android.util.Log;
-import androidx.core.os.CancellationSignal;
-import androidx.core.os.OperationCanceledException;
 
 import com.osmerion.android.database.CursorWindow;
 

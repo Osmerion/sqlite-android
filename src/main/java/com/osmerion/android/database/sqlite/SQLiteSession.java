@@ -25,9 +25,9 @@ package com.osmerion.android.database.sqlite;
 import android.annotation.SuppressLint;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteTransactionListener;
+import android.os.CancellationSignal;
+import android.os.OperationCanceledException;
 import android.os.ParcelFileDescriptor;
-import androidx.core.os.CancellationSignal;
-import androidx.core.os.OperationCanceledException;
 
 import com.osmerion.android.database.CursorWindow;
 

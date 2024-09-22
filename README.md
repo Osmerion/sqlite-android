@@ -142,7 +142,6 @@ Changes
 - Migrate to Gradle build
 - buildscript dynamically fetches and builds the latest sqlite source from sqlite.org
 - Added consumer proguard rules
-- Use androidx-core version of `CancellationSignal`
 - Fix bug in `SQLiteOpenHelper.getDatabaseLocked()` wrong path to `openOrCreateDatabase`
 - Fix removed members in AbstractWindowCursor
 - Made the AOSP code (mostly) warning free but still mergable from source

@@ -29,8 +29,9 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteTransactionListener;
-import android.os.Build;
+import android.os.CancellationSignal;
 import android.os.Looper;
+import android.os.OperationCanceledException;
 import android.os.ParcelFileDescriptor;
 import android.text.TextUtils;
 import android.util.EventLog;
@@ -40,9 +41,6 @@ import android.util.Printer;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.os.CancellationSignal;
-import androidx.core.os.OperationCanceledException;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.sqlite.db.SupportSQLiteQuery;
 
@@ -1340,34 +1338,7 @@ public final class SQLiteDatabase extends SQLiteClosable implements SupportSQLit
      */
     @Override
     public Cursor query(final SupportSQLiteQuery supportQuery) {
-        return query(supportQuery, (CancellationSignal) null);
-    }
-
-    /**
-     * Runs the provided SQL and returns a {@link Cursor} over the result set.
-     *
-     * @param supportQuery the SQL query. The SQL string must not be ; terminated
-     * @param signal A signal to cancel the operation in progress, or null if none.
-     * If the operation is canceled, then {@link OperationCanceledException} will be thrown
-     * when the query is executed.
-     * @return A {@link Cursor} object, which is positioned before the first entry. Note that
-     * {@link Cursor}s are not synchronized, see the documentation for more details.
-     */
-    @Override
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public Cursor query(SupportSQLiteQuery supportQuery, android.os.CancellationSignal signal) {
-        if (signal != null) {
-            final CancellationSignal supportCancellationSignal = new CancellationSignal();
-            signal.setOnCancelListener(new android.os.CancellationSignal.OnCancelListener() {
-                @Override
-                public void onCancel() {
-                    supportCancellationSignal.cancel();
-                }
-            });
-            return query(supportQuery, supportCancellationSignal);
-        } else {
-            return query(supportQuery, (CancellationSignal) null);
-        }
+        return query(supportQuery, null);
     }
 
     /**

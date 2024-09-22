@@ -29,13 +29,13 @@ import android.database.sqlite.SQLiteBindOrColumnIndexOutOfRangeException;
 import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.database.sqlite.SQLiteException;
 import android.os.Build;
+import android.os.CancellationSignal;
 import android.os.Looper;
+import android.os.OperationCanceledException;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.util.Printer;
 import androidx.collection.LruCache;
-import androidx.core.os.CancellationSignal;
-import androidx.core.os.OperationCanceledException;
 
 import com.osmerion.android.database.CursorWindow;
 

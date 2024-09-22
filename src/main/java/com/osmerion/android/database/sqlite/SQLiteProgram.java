@@ -18,7 +18,8 @@
 // modified from original source see README at the top level of this project
 package com.osmerion.android.database.sqlite;
 
-import androidx.core.os.CancellationSignal;
+import android.os.CancellationSignal;
+
 import androidx.sqlite.db.SupportSQLiteProgram;
 
 import java.util.Arrays;
