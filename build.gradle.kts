@@ -17,7 +17,7 @@ android {
 
     compileSdk = 34
 
-    namespace = "io.requery.android.sqlite"
+    namespace = "com.osmerion.android.sqlite"
 
     defaultConfig {
         minSdk = 21

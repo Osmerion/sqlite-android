@@ -934,9 +934,9 @@ static JNINativeMethod sMethods[] =
             (void*)nativeOpen },
     { "nativeClose", "(J)V",
             (void*)nativeClose },
-    { "nativeRegisterCustomFunction", "(JLio/requery/android/database/sqlite/SQLiteCustomFunction;)V",
+    { "nativeRegisterCustomFunction", "(JLcom/osmerion/android/database/sqlite/SQLiteCustomFunction;)V",
             (void*)nativeRegisterCustomFunction },
-    { "nativeRegisterFunction", "(JLio/requery/android/database/sqlite/SQLiteFunction;)V",
+    { "nativeRegisterFunction", "(JLcom/osmerion/android/database/sqlite/SQLiteFunction;)V",
             (void*)nativeRegisterFunction },
     { "nativeRegisterLocalizedCollators", "(JLjava/lang/String;)V",
             (void*)nativeRegisterLocalizedCollators },
@@ -993,7 +993,7 @@ static JNINativeMethod sMethods[] =
 int register_android_database_SQLiteConnection(JNIEnv *env)
 {
     jclass clazz;
-    FIND_CLASS(clazz, "io/requery/android/database/sqlite/SQLiteCustomFunction");
+    FIND_CLASS(clazz, "com/osmerion/android/database/sqlite/SQLiteCustomFunction");
 
     GET_FIELD_ID(gSQLiteCustomFunctionClassInfo.name, clazz,
             "name", "Ljava/lang/String;");
@@ -1002,7 +1002,7 @@ int register_android_database_SQLiteConnection(JNIEnv *env)
     GET_METHOD_ID(gSQLiteCustomFunctionClassInfo.dispatchCallback,
             clazz, "dispatchCallback", "([Ljava/lang/String;)Ljava/lang/String;");
 
-    FIND_CLASS(clazz, "io/requery/android/database/sqlite/SQLiteFunction");
+    FIND_CLASS(clazz, "com/osmerion/android/database/sqlite/SQLiteFunction");
 
     GET_FIELD_ID(gSQLiteFunctionClassInfo.name, clazz,
             "name", "Ljava/lang/String;");
@@ -1017,7 +1017,7 @@ int register_android_database_SQLiteConnection(JNIEnv *env)
     gStringClassInfo.clazz = jclass(env->NewGlobalRef(clazz));
 
     return jniRegisterNativeMethods(env,
-        "io/requery/android/database/sqlite/SQLiteConnection",
+        "com/osmerion/android/database/sqlite/SQLiteConnection",
         sMethods, NELEM(sMethods)
     );
 }
