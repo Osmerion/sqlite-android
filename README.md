@@ -87,28 +87,23 @@ is worse than using the x86 binary.
 
 This repository was forked from [requery/sqlite-android](https://github.com/requery/sqlite-android)
 which, in turn, is based on the AOSP code and the [Android SQLite bindings](https://www.sqlite.org/android/doc/trunk/www/index.wiki).
-The following changes have been made:
+Compared to the original AOSP code, the following changes have been made:
 
-  - **Fast read performance:** The original SQLite bindings filled the CursorWindow using its
-    Java methods from native C++. This was because there is no access to the native CursorWindow
-    native API from the NDK. Unfortunately, this slowed read performance significantly (roughly 2x
-    worse vs the android database API) because of extra JNI roundtrips. This has been rewritten
+  - **Faster read performance**: The original SQLite bindings filled the CursorWindow using its Java
+    methods from native C++. This was because there is no access to the native CursorWindow native
+    API from the NDK. Unfortunately, this slowed read performance significantly (roughly 2x worse vs
+    the android database API) because of extra JNI roundtrips. This has been rewritten
     without the JNI to Java calls (so more like the original AOSP code) and also using a local memory
     CursorWindow.
-  - Reuse of android.database.sqlite.*, the original SQLite bindings replicated the entire
-    android.database.sqlite API structure including exceptions & interfaces. This project does not
-    do that, instead it reuses the original classes/interfaces when possible to simplify
-    migration and/or use with existing code.
-  - Unit tests added
-  - Compile with [clang](http://clang.llvm.org/) toolchain
-  - Compile with FTS3, FTS4, & JSON1 extension
-  - buildscript dynamically fetches and builds the latest sqlite source from sqlite.org
-  - Added consumer proguard rules
-  - Fix bug in `SQLiteOpenHelper.getDatabaseLocked()` wrong path to `openOrCreateDatabase`
-  - Fix removed members in AbstractWindowCursor
-  - Deprecated classes/methods removed
-  - Loadable extension support
-  - STL dependency removed
+  - Instead of replicating the entire API of `android.database.sqlite`, this project reuses the
+    original classes when possible. This, in addition to use of the AndroidX SQLite API,
+    significantly simplifies migration and/or use with existing code.
+  - The test coverage has been expanded and improved.
+  - Consumer ProGuard rules have been added.
+  - Several deprecated classes and methods have been removed.
+  - The native library is built with several extensions that are not enabled by default in the
+    Android platform's SQLite library, including FTS3, FTS4, and JSON1.
+  - The native library is built with [loadable extension support](https://www.sqlite.org/loadext.html).
 
 
 ## License
