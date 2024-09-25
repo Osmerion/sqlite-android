@@ -130,6 +130,7 @@ publishing {
             }
 
             pom {
+                description = "A distribution of the latest SQLite versions for Android."
                 packaging = "aar"
             }
         }
