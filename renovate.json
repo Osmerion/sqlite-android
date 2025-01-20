@@ -1,0 +1,4 @@
+{
+  "extends": ["github>Osmerion/sqlite-android//.github/renovate.json5"],
+  "forkProcessing": true
+}
