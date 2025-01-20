@@ -1,4 +1,4 @@
 {
     "extends": ["github>Osmerion/.github//.github/renovate.json5"],
-    "renovateFork": true
+    "forkProcessing": true
 }
