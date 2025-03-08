@@ -8,6 +8,8 @@
 !/.idea/scopes
 !/.idea/icon.png
 
+/.kotlin
+
 /build
 
 /local.properties
