@@ -1,11 +1,11 @@
-### 0.2.0
+### 0.3.0
 
-_Released 2025 Feb 16_
+_Released 2025 Mar 08_
 
 #### Overview
 
-This release bundles SQLite `3.49.0`.
+This release bundles SQLite `3.49.1`.
 
 #### Improvements
 
-- Updated SQLite to `3.49.0`.
+- Updated SQLite to `3.49.1`.
