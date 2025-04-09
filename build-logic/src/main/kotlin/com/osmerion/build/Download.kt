@@ -55,7 +55,9 @@ abstract class Download : DefaultTask() {
 
     @TaskAction
     protected fun download() {
-        val httpClient = HttpClient.newHttpClient()
+        val httpClient = HttpClient.newBuilder()
+            .followRedirects(HttpClient.Redirect.NORMAL)
+            .build()
 
         val request = HttpRequest.newBuilder()
             .uri(URI.create(src.get()))
