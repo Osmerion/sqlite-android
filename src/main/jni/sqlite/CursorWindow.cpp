@@ -46,7 +46,7 @@ status_t CursorWindow::create(const char* name, size_t size, CursorWindow** outW
     if (!data) {
         return NO_MEMORY;
     }
-    CursorWindow* window = new CursorWindow(name, data, size, false);
+    auto* window = new CursorWindow(name, data, size, false);
     result = window->clear();
     if (!result) {
         LOG_WINDOW("Created new CursorWindow: freeOffset=%d, "
@@ -72,7 +72,7 @@ status_t CursorWindow::clear() {
     mHeader->numRows = 0;
     mHeader->numColumns = 0;
 
-    RowSlotChunk* firstChunk = static_cast<RowSlotChunk*>(offsetToPtr(mHeader->firstChunkOffset));
+    auto* firstChunk = static_cast<RowSlotChunk*>(offsetToPtr(mHeader->firstChunkOffset));
     firstChunk->nextChunkOffset = 0;
     return OK;
 }
@@ -98,7 +98,7 @@ status_t CursorWindow::allocRow() {
 
     // Fill in the row slot
     RowSlot* rowSlot = allocRowSlot();
-    if (rowSlot == NULL) {
+    if (rowSlot == nullptr) {
         return NO_MEMORY;
     }
 
@@ -111,7 +111,7 @@ status_t CursorWindow::allocRow() {
                 "from allocRowSlot %d", mHeader->numRows);
         return NO_MEMORY;
     }
-    FieldSlot* fieldDir = static_cast<FieldSlot*>(offsetToPtr(fieldDirOffset));
+    auto* fieldDir = static_cast<FieldSlot*>(offsetToPtr(fieldDirOffset));
     memset(fieldDir, 0, fieldDirSize);
 
     //LOG_WINDOW("Allocated row %u, rowSlot is at offset %u, fieldDir is %d bytes at offset %u\n",
@@ -155,7 +155,7 @@ uint32_t CursorWindow::alloc(size_t size, bool aligned) {
 
 CursorWindow::RowSlot* CursorWindow::getRowSlot(uint32_t row) {
     uint32_t chunkPos = row;
-    RowSlotChunk* chunk = static_cast<RowSlotChunk*>(
+    auto* chunk = static_cast<RowSlotChunk*>(
             offsetToPtr(mHeader->firstChunkOffset));
     while (chunkPos >= ROW_SLOT_CHUNK_NUM_ROWS) {
         chunk = static_cast<RowSlotChunk*>(offsetToPtr(chunk->nextChunkOffset));
@@ -166,7 +166,7 @@ CursorWindow::RowSlot* CursorWindow::getRowSlot(uint32_t row) {
 
 CursorWindow::RowSlot* CursorWindow::allocRowSlot() {
     uint32_t chunkPos = mHeader->numRows;
-    RowSlotChunk* chunk = static_cast<RowSlotChunk*>(
+    auto* chunk = static_cast<RowSlotChunk*>(
             offsetToPtr(mHeader->firstChunkOffset));
     while (chunkPos > ROW_SLOT_CHUNK_NUM_ROWS) {
         chunk = static_cast<RowSlotChunk*>(offsetToPtr(chunk->nextChunkOffset));
@@ -176,7 +176,7 @@ CursorWindow::RowSlot* CursorWindow::allocRowSlot() {
         if (!chunk->nextChunkOffset) {
             chunk->nextChunkOffset = alloc(sizeof(RowSlotChunk), true /*aligned*/);
             if (!chunk->nextChunkOffset) {
-                return NULL;
+                return nullptr;
             }
         }
         chunk = static_cast<RowSlotChunk*>(offsetToPtr(chunk->nextChunkOffset));
@@ -192,14 +192,14 @@ CursorWindow::FieldSlot* CursorWindow::getFieldSlot(uint32_t row, uint32_t colum
         ALOGE("Failed to read row %d, column %d from a CursorWindow which "
                 "has %d rows, %d columns.",
                 row, column, mHeader->numRows, mHeader->numColumns);
-        return NULL;
+        return nullptr;
     }
     RowSlot* rowSlot = getRowSlot(row);
     if (!rowSlot) {
         ALOGE("Failed to find rowSlot for row %d.", row);
-        return NULL;
+        return nullptr;
     }
-    FieldSlot* fieldDir = static_cast<FieldSlot*>(offsetToPtr(rowSlot->offset));
+    auto* fieldDir = static_cast<FieldSlot*>(offsetToPtr(rowSlot->offset));
     return &fieldDir[column];
 }
 
@@ -282,4 +282,4 @@ status_t CursorWindow::putNull(uint32_t row, uint32_t column) {
     return OK;
 }
 
-}; // namespace android
+} // namespace android

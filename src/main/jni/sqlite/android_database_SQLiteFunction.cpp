@@ -43,7 +43,7 @@ static sqlite3_value *tovalue(JNIEnv *env, jlong argsPtr, jint arg) {
         return 0;
     }
 
-    sqlite3_value **args = reinterpret_cast<sqlite3_value**>(argsPtr);
+    auto **args = reinterpret_cast<sqlite3_value**>(argsPtr);
     return args[arg];
 }
 
@@ -67,17 +67,17 @@ static jbyteArray nativeGetArgBlob(JNIEnv* env, jclass clazz, jlong argsPtr,
     const void *blob;
 
     sqlite3_value *value = tovalue(env, argsPtr, arg);
-    if (!value) return NULL;
+    if (!value) return nullptr;
 
     blob = sqlite3_value_blob(value);
-    if (!blob) return NULL;
+    if (!blob) return nullptr;
 
     length = sqlite3_value_bytes(value);
     byteArray = env->NewByteArray(length);
     if (!byteArray) {
         env->ExceptionClear();
         throw_sqlite3_exception(env, "Native could not create new byte[]");
-        return NULL;
+        return nullptr;
     }
 
     env->SetByteArrayRegion(byteArray, 0, length, static_cast<const jbyte*>(blob));
@@ -87,17 +87,17 @@ static jbyteArray nativeGetArgBlob(JNIEnv* env, jclass clazz, jlong argsPtr,
 static jstring nativeGetArgString(JNIEnv* env, jclass clazz, jlong argsPtr,
         jint arg) {
     sqlite3_value *value = tovalue(env, argsPtr, arg);
-    if (!value) return NULL;
+    if (!value) return nullptr;
 
-    const jchar* chars = static_cast<const jchar*>(sqlite3_value_text16(value));
-    if (!chars) return NULL;
+    const auto* chars = static_cast<const jchar*>(sqlite3_value_text16(value));
+    if (!chars) return nullptr;
 
     size_t len = sqlite3_value_bytes16(value) / sizeof(jchar);
     jstring str = env->NewString(chars, len);
     if (!str) {
         env->ExceptionClear();
         throw_sqlite3_exception(env, "Native could not allocate string");
-        return NULL;
+        return nullptr;
     }
 
     return str;
@@ -129,13 +129,13 @@ static void nativeSetResultBlob(JNIEnv* env, jclass clazz,
         jlong contextPtr, jbyteArray result) {
     sqlite3_context *context = tocontext(env, contextPtr);
     if (!context) return;
-    if (result == NULL) {
+    if (result == nullptr) {
         sqlite3_result_null(context);
         return;
     }
 
     jsize len = env->GetArrayLength(result);
-    void *bytes = env->GetPrimitiveArrayCritical(result, NULL);
+    void *bytes = env->GetPrimitiveArrayCritical(result, nullptr);
     if (!bytes) {
         env->ExceptionClear();
         throw_sqlite3_exception(env, "Out of memory accepting blob");
@@ -149,12 +149,12 @@ static void nativeSetResultBlob(JNIEnv* env, jclass clazz,
 static void nativeSetResultString(JNIEnv* env, jclass clazz,
         jlong contextPtr, jstring result) {
     sqlite3_context *context = tocontext(env, contextPtr);
-    if (result == NULL) {
+    if (result == nullptr) {
         sqlite3_result_null(context);
         return;
     }
 
-    const char* chars = env->GetStringUTFChars(result, NULL);
+    const char* chars = env->GetStringUTFChars(result, nullptr);
     if (!chars) {
         ALOGE("result value can't be transferred to UTFChars");
         sqlite3_result_error_nomem(context);
@@ -186,12 +186,12 @@ static void nativeSetResultInt(JNIEnv* env, jclass clazz,
 static void nativeSetResultError(JNIEnv* env, jclass clazz,
         jlong contextPtr, jstring error) {
     sqlite3_context *context = tocontext(env, contextPtr);
-    if (error == NULL) {
+    if (error == nullptr) {
         sqlite3_result_null(context);
         return;
     }
 
-    const char* chars = env->GetStringUTFChars(error, NULL);
+    const char* chars = env->GetStringUTFChars(error, nullptr);
     if (!chars) {
         ALOGE("result value can't be transferred to UTFChars");
         sqlite3_result_error_nomem(context);

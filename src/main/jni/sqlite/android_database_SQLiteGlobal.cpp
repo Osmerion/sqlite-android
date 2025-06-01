@@ -61,7 +61,7 @@ static void sqliteInitialize() {
     bool verboseLog = android_util_Log_isVerboseLogEnabled(SQLITE_LOG_TAG);
 #endif
     bool verboseLog = false;
-    sqlite3_config(SQLITE_CONFIG_LOG, &sqliteLogCallback, verboseLog ? (void*)1 : NULL);
+    sqlite3_config(SQLITE_CONFIG_LOG, &sqliteLogCallback, verboseLog ? (void*)1 : nullptr);
 
     // The soft heap limit prevents the page cache allocations from growing
     // beyond the given limit, no matter what the max page cache sizes are
