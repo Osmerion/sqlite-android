@@ -38,7 +38,7 @@ static struct {
     jfieldID largestMemAlloc;
 } gSQLiteDebugPagerStatsClassInfo;
 
-static void nativeGetPagerStats(JNIEnv *env, jobject clazz, jobject statsObj)
+static void nativeGetPagerStats(JNIEnv *env, [[maybe_unused]] jobject clazz, jobject statsObj)
 {
     int memoryUsed;
     int pageCacheOverflow;

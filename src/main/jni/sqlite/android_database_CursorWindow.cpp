@@ -52,7 +52,7 @@ static void throwUnknownTypeException(JNIEnv * env, jint type) {
     jniThrowException(env, "java/lang/IllegalStateException", buf);
 }
 
-static jlong nativeCreate(JNIEnv* env, jclass clazz, jstring nameObj, jint cursorWindowSize) {
+static jlong nativeCreate(JNIEnv* env, [[maybe_unused]] jclass clazz, jstring nameObj, jint cursorWindowSize) {
     CursorWindow* window;
     const char* nameStr = env->GetStringUTFChars(nameObj, nullptr);
     status_t status = CursorWindow::create(nameStr, cursorWindowSize, &window);
@@ -68,7 +68,7 @@ static jlong nativeCreate(JNIEnv* env, jclass clazz, jstring nameObj, jint curso
     return reinterpret_cast<jlong>(window);
 }
 
-static void nativeDispose(JNIEnv* env, jclass clazz, jlong windowPtr) {
+static void nativeDispose([[maybe_unused]] JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     if (window) {
         LOG_WINDOW("Closing window %p", window);
@@ -76,12 +76,12 @@ static void nativeDispose(JNIEnv* env, jclass clazz, jlong windowPtr) {
     }
 }
 
-static jstring nativeGetName(JNIEnv* env, jclass clazz, jlong windowPtr) {
+static jstring nativeGetName(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     return env->NewStringUTF(window->name());
 }
 
-static void nativeClear(JNIEnv * env, jclass clazz, jlong windowPtr) {
+static void nativeClear([[maybe_unused]] JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     LOG_WINDOW("Clearing window %p", window);
     status_t status = window->clear();
@@ -90,31 +90,36 @@ static void nativeClear(JNIEnv * env, jclass clazz, jlong windowPtr) {
     }
 }
 
-static jint nativeGetNumRows(JNIEnv* env, jclass clazz, jlong windowPtr) {
+static jint nativeGetNumRows([[maybe_unused]] JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     return window->getNumRows();
 }
 
-static jboolean nativeSetNumColumns(JNIEnv* env, jclass clazz, jlong windowPtr,
+static jboolean nativeSetNumColumns([[maybe_unused]] JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr,
         jint columnNum) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     status_t status = window->setNumColumns(columnNum);
     return status == OK;
 }
 
-static jboolean nativeAllocRow(JNIEnv* env, jclass clazz, jlong windowPtr) {
+static jboolean nativeAllocRow([[maybe_unused]] JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     status_t status = window->allocRow();
     return status == OK;
 }
 
-static void nativeFreeLastRow(JNIEnv* env, jclass clazz, jlong windowPtr) {
+static void nativeFreeLastRow([[maybe_unused]] JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     window->freeLastRow();
 }
 
-static jint nativeGetType(JNIEnv* env, jclass clazz, jlong windowPtr,
-        jint row, jint column) {
+static jint nativeGetType(
+    [[maybe_unused]] JNIEnv* env,
+    [[maybe_unused]] jclass clazz,
+    jlong windowPtr,
+    jint row,
+    jint column
+) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     LOG_WINDOW("returning column type affinity for %d,%d from %p", row, column, window);
 
@@ -125,8 +130,7 @@ static jint nativeGetType(JNIEnv* env, jclass clazz, jlong windowPtr,
     return window->getFieldSlotType(fieldSlot);
 }
 
-static jbyteArray nativeGetBlob(JNIEnv* env, jclass clazz, jlong windowPtr,
-        jint row, jint column) {
+static jbyteArray nativeGetBlob(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr, jint row, jint column) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     //LOG_WINDOW("Getting blob for %d,%d from %p", row, column, window);
 
@@ -162,8 +166,7 @@ static jbyteArray nativeGetBlob(JNIEnv* env, jclass clazz, jlong windowPtr,
 
 extern int utf8ToJavaCharArray(const char* d, jchar v[], jint byteCount);
 
-static jstring nativeGetString(JNIEnv* env, jclass clazz, jlong windowPtr,
-        jint row, jint column) {
+static jstring nativeGetString(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr, jint row, jint column) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     //LOG_WINDOW("Getting string for %d,%d from %p", row, column, window);
 
@@ -213,8 +216,7 @@ static jstring nativeGetString(JNIEnv* env, jclass clazz, jlong windowPtr,
     }
 }
 
-static jlong nativeGetLong(JNIEnv* env, jclass clazz, jlong windowPtr,
-        jint row, jint column) {
+static jlong nativeGetLong(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr, jint row, jint column) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     //LOG_WINDOW("Getting long for %d,%d from %p", row, column, window);
 
@@ -244,8 +246,7 @@ static jlong nativeGetLong(JNIEnv* env, jclass clazz, jlong windowPtr,
     }
 }
 
-static jdouble nativeGetDouble(JNIEnv* env, jclass clazz, jlong windowPtr,
-        jint row, jint column) {
+static jdouble nativeGetDouble(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr, jint row, jint column) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     //LOG_WINDOW("Getting double for %d,%d from %p", row, column, window);
 
@@ -275,8 +276,7 @@ static jdouble nativeGetDouble(JNIEnv* env, jclass clazz, jlong windowPtr,
     }
 }
 
-static jboolean nativePutBlob(JNIEnv* env, jclass clazz, jlong windowPtr,
-        jbyteArray valueObj, jint row, jint column) {
+static jboolean nativePutBlob(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr, jbyteArray valueObj, jint row, jint column) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     jsize len = env->GetArrayLength(valueObj);
 
@@ -293,8 +293,7 @@ static jboolean nativePutBlob(JNIEnv* env, jclass clazz, jlong windowPtr,
     return true;
 }
 
-static jboolean nativePutString(JNIEnv* env, jclass clazz, jlong windowPtr,
-        jstring valueObj, jint row, jint column) {
+static jboolean nativePutString(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr, jstring valueObj, jint row, jint column) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
 
     size_t sizeIncludingNull = env->GetStringUTFLength(valueObj) + 1;
@@ -315,8 +314,7 @@ static jboolean nativePutString(JNIEnv* env, jclass clazz, jlong windowPtr,
     return true;
 }
 
-static jboolean nativePutLong(JNIEnv* env, jclass clazz, jlong windowPtr,
-        jlong value, jint row, jint column) {
+static jboolean nativePutLong([[maybe_unused]] JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr, jlong value, jint row, jint column) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     status_t status = window->putLong(row, column, value);
 
@@ -329,8 +327,7 @@ static jboolean nativePutLong(JNIEnv* env, jclass clazz, jlong windowPtr,
     return true;
 }
 
-static jboolean nativePutDouble(JNIEnv* env, jclass clazz, jlong windowPtr,
-        jdouble value, jint row, jint column) {
+static jboolean nativePutDouble([[maybe_unused]] JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr, jdouble value, jint row, jint column) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     status_t status = window->putDouble(row, column, value);
 
@@ -343,8 +340,7 @@ static jboolean nativePutDouble(JNIEnv* env, jclass clazz, jlong windowPtr,
     return true;
 }
 
-static jboolean nativePutNull(JNIEnv* env, jclass clazz, jlong windowPtr,
-        jint row, jint column) {
+static jboolean nativePutNull([[maybe_unused]] JNIEnv* env, [[maybe_unused]] jclass clazz, jlong windowPtr, jint row, jint column) {
     auto* window = reinterpret_cast<CursorWindow*>(windowPtr);
     status_t status = window->putNull(row, column);
 

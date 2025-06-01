@@ -60,7 +60,7 @@ static sqlite3_context *tocontext(JNIEnv *env, jlong contextPtr) {
  * Getters
  */
 
-static jbyteArray nativeGetArgBlob(JNIEnv* env, jclass clazz, jlong argsPtr,
+static jbyteArray nativeGetArgBlob(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong argsPtr,
         jint arg) {
     int length;
     jbyteArray byteArray;
@@ -84,7 +84,7 @@ static jbyteArray nativeGetArgBlob(JNIEnv* env, jclass clazz, jlong argsPtr,
     return byteArray;
 }
 
-static jstring nativeGetArgString(JNIEnv* env, jclass clazz, jlong argsPtr,
+static jstring nativeGetArgString(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong argsPtr,
         jint arg) {
     sqlite3_value *value = tovalue(env, argsPtr, arg);
     if (!value) return nullptr;
@@ -103,19 +103,19 @@ static jstring nativeGetArgString(JNIEnv* env, jclass clazz, jlong argsPtr,
     return str;
 }
 
-static jlong nativeGetArgLong(JNIEnv* env, jclass clazz, jlong argsPtr,
+static jlong nativeGetArgLong(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong argsPtr,
         jint arg) {
     sqlite3_value *value = tovalue(env, argsPtr, arg);
     return value ? sqlite3_value_int64(value) : 0;
 }
 
-static jdouble nativeGetArgDouble(JNIEnv* env, jclass clazz, jlong argsPtr,
+static jdouble nativeGetArgDouble(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong argsPtr,
         jint arg) {
     sqlite3_value *value = tovalue(env, argsPtr, arg);
     return value ? sqlite3_value_double(value) : 0;
 }
 
-static jint nativeGetArgInt(JNIEnv* env, jclass clazz, jlong argsPtr,
+static jint nativeGetArgInt(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong argsPtr,
         jint arg) {
     sqlite3_value *value = tovalue(env, argsPtr, arg);
     return value ? sqlite3_value_int(value) : 0;
@@ -125,7 +125,7 @@ static jint nativeGetArgInt(JNIEnv* env, jclass clazz, jlong argsPtr,
  * Setters
  */
 
-static void nativeSetResultBlob(JNIEnv* env, jclass clazz,
+static void nativeSetResultBlob(JNIEnv* env, [[maybe_unused]] jclass clazz,
         jlong contextPtr, jbyteArray result) {
     sqlite3_context *context = tocontext(env, contextPtr);
     if (!context) return;
@@ -146,7 +146,7 @@ static void nativeSetResultBlob(JNIEnv* env, jclass clazz,
     env->ReleasePrimitiveArrayCritical(result, bytes, JNI_ABORT);
 }
 
-static void nativeSetResultString(JNIEnv* env, jclass clazz,
+static void nativeSetResultString(JNIEnv* env, [[maybe_unused]] jclass clazz,
         jlong contextPtr, jstring result) {
     sqlite3_context *context = tocontext(env, contextPtr);
     if (result == nullptr) {
@@ -165,25 +165,25 @@ static void nativeSetResultString(JNIEnv* env, jclass clazz,
     env->ReleaseStringUTFChars(result, chars);
 }
 
-static void nativeSetResultLong(JNIEnv* env, jclass clazz,
+static void nativeSetResultLong(JNIEnv* env, [[maybe_unused]] jclass clazz,
         jlong contextPtr, jlong result) {
     sqlite3_context *context = tocontext(env, contextPtr);
     if (context) sqlite3_result_int64(context, result);
 }
 
-static void nativeSetResultDouble(JNIEnv* env, jclass clazz,
+static void nativeSetResultDouble(JNIEnv* env, [[maybe_unused]] jclass clazz,
         jlong contextPtr, jdouble result) {
     sqlite3_context *context = tocontext(env, contextPtr);
     if (context) sqlite3_result_double(context, result);
 }
 
-static void nativeSetResultInt(JNIEnv* env, jclass clazz,
+static void nativeSetResultInt(JNIEnv* env, [[maybe_unused]] jclass clazz,
         jlong contextPtr, jint result) {
     sqlite3_context *context = tocontext(env, contextPtr);
     if (context) sqlite3_result_int(context, result);
 }
 
-static void nativeSetResultError(JNIEnv* env, jclass clazz,
+static void nativeSetResultError(JNIEnv* env, [[maybe_unused]] jclass clazz,
         jlong contextPtr, jstring error) {
     sqlite3_context *context = tocontext(env, contextPtr);
     if (error == nullptr) {
@@ -202,7 +202,7 @@ static void nativeSetResultError(JNIEnv* env, jclass clazz,
     env->ReleaseStringUTFChars(error, chars);
 }
 
-static void nativeSetResultNull(JNIEnv* env, jclass clazz, jlong contextPtr) {
+static void nativeSetResultNull(JNIEnv* env, [[maybe_unused]] jclass clazz, jlong contextPtr) {
     sqlite3_context *context = tocontext(env, contextPtr);
     if (context) sqlite3_result_null(context);
 }
