@@ -21,7 +21,7 @@
 #define _ANDROID_DATABASE_SQLITE_COMMON_H
 
 #include <jni.h>
-#include <JNIHelp.h>
+#include "JNIHelp.h"
 
 #include <sqlite3.h>
 

@@ -20,7 +20,7 @@
 #define LOG_TAG "SQLiteGlobal"
 
 #include <jni.h>
-#include <JNIHelp.h>
+#include "JNIHelp.h"
 #include "ALog-priv.h"
 
 #include <sqlite3.h>
