@@ -2,4 +2,4 @@
 # androidx - Jetpack libraries
 # https://developer.android.com/jetpack/androidx/versions
 androidx-core = { module = "androidx.core:core", version = "1.16.0" }
-androidx-sqlite = { module = "androidx.sqlite:sqlite", version = "2.5.1" }
+androidx-sqlite = { module = "androidx.sqlite:sqlite", version = "2.5.2" }
