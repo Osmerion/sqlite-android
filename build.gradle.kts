@@ -32,7 +32,7 @@ android {
     buildToolsVersion = "35.0.0"
     ndkVersion = "27.2.12479018"
 
-    compileSdk = 35
+    compileSdk = 36
 
     namespace = "com.osmerion.android.sqlite"
 
