@@ -1,10 +1,6 @@
 name: Publish
 on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: The environment to publish to
-        type: environment
+  - workflow_dispatch
 permissions:
   contents: read
 
