@@ -44,7 +44,7 @@ jobs:
 
   build-artifact-bundle:
     name: Build Artifact Bundle
-    needs: check
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
