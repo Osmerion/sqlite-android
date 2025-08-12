@@ -6,9 +6,6 @@ on:
 permissions:
   contents: read
 
-env:
-  JDK_VERSION: "23"
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +17,7 @@ jobs:
         uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4
         with:
           distribution: "temurin"
-          java-version: ${{ env.JDK_VERSION }}
+          java-version-file: .github/workflows/.java-version
 
       - name: Accept Android SDK Licenses
         shell: bash
