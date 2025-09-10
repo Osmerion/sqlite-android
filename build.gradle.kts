@@ -37,7 +37,7 @@ android {
     namespace = "com.osmerion.android.sqlite"
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("proguard-rules.pro")

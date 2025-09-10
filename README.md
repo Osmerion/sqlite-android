@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202.0-yellowgreen.svg?style=for-the-badge&label=License)](https://github.com/Osmerion/sqlite-android/blob/master/LICENSE)
 [![Maven Central](https://img.shields.io/maven-central/v/com.osmerion.sqlite.android/sqlite-android.svg?style=for-the-badge&label=Maven%20Central)](https://maven-badges.herokuapp.com/maven-central/com.osmerion.sqlite.android/sqlite-android)
 ![Java](https://img.shields.io/badge/Java-17-green.svg?style=for-the-badge&color=b07219&logo=Java)
-![Android SDK](https://img.shields.io/badge/Android%20SDK-21-green.svg?style=for-the-badge&color=34A853&logo=Java)
+![Android SDK](https://img.shields.io/badge/Android%20SDK-23-green.svg?style=for-the-badge&color=34A853&logo=Java)
 
 This project is a distribution of the latest versions of SQLite for Android. It implements the [androidx.sqlite](https://developer.android.com/jetpack/androidx/releases/sqlite)
 API for broad compatibility with Android libraries. In many cases, this library can be used as a
