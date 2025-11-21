@@ -33,4 +33,4 @@ jobs:
         uses: gradle/actions/setup-gradle@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2 # v5.0.0
 
       - name: Gradle Check
-        run: ./gradlew assemble check allDevicesCheck --info -S --show-version
+        run: ./gradlew assemble check allDevicesCheck javaDocReleaseGeneration --info -S --show-version
