@@ -1,11 +1,15 @@
-### 0.5.0
+### 0.6.0
 
-_Released 2025 Aug 12_
+_Released 2025 Nov 21_
 
 #### Overview
 
-This release bundles SQLite `3.50.4`.
+This release bundles SQLite `3.51.0`.
 
 #### Improvements
 
-- Updated SQLite to `3.50.4`.
+- Updated SQLite to `3.51.0`.
+
+#### Breaking Changes
+
+- The minimum SDK version is now 23 (from 21).
