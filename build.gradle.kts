@@ -91,10 +91,10 @@ android {
 
 tasks {
     val downloadSqlite = register<Download>("downloadSqlite") {
-        src = "https://www.sqlite.org/2025/sqlite-amalgamation-3500400.zip"
+        src = "https://www.sqlite.org/2025/sqlite-amalgamation-3510000.zip"
         dest = layout.buildDirectory.file("tmp/sqlite.zip")
 
-        checksum = "f131b68e6ba5fb891cc13ebb5ff9555054c77294cb92d8d1268bad5dba4fa2a1"
+        checksum = "01d85a7831c611f000aca64fa2b01cd8acb33f8adf6e6e21556353d898b97166"
         hashingAlgorithm = "SHA3-256"
 
         outputs.upToDateWhen { true }
