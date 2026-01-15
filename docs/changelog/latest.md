@@ -1,11 +1,11 @@
-### 0.7.0
+### 0.8.0
 
-_Released 2025 Dec 07_
+_Released 2026 Jan 15_
 
 #### Overview
 
-This release bundles SQLite `3.51.1`.
+This release bundles SQLite `3.51.2`.
 
 #### Improvements
 
-- Updated SQLite to `3.51.1`.
+- Updated SQLite to `3.51.2`.
