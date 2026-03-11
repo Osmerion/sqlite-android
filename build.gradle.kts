@@ -29,7 +29,6 @@ java {
 }
 
 android {
-    buildToolsVersion = "35.0.0"
     ndkVersion = "27.2.12479018"
 
     compileSdk = 36
