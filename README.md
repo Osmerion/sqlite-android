@@ -1,7 +1,7 @@
 # Android SQLite support library
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-yellowgreen.svg?style=for-the-badge&label=License)](https://github.com/Osmerion/sqlite-android/blob/master/LICENSE)
-[![Maven Central](https://img.shields.io/maven-central/v/com.osmerion.sqlite.android/sqlite-android.svg?style=for-the-badge&label=Maven%20Central)](https://maven-badges.herokuapp.com/maven-central/com.osmerion.sqlite.android/sqlite-android)
+[![Maven Central](https://img.shields.io/maven-central/v/com.osmerion.sqlite.android/sqlite-android.svg?style=for-the-badge&label=Maven%20Central)](https://central.sonatype.com/artifact/com.osmerion.sqlite.android/sqlite-android)
 ![Java](https://img.shields.io/badge/Java-17-green.svg?style=for-the-badge&color=b07219&logo=Java)
 ![Android SDK](https://img.shields.io/badge/Android%20SDK-23-green.svg?style=for-the-badge&color=34A853&logo=Java)
 
