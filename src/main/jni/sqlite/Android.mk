@@ -37,7 +37,7 @@ LOCAL_CFLAGS += $(sqlite_flags)
 LOCAL_CFLAGS += -Wno-unused-parameter -Wno-int-to-pointer-cast
 LOCAL_CFLAGS += -Wno-uninitialized -Wno-parentheses
 LOCAL_CPPFLAGS += -Wno-conversion-null
-
+LOCAL_CPPFLAGS += -fno-sized-deallocation
 
 ifeq ($(TARGET_ARCH), arm)
 	LOCAL_CFLAGS += -DPACKED="__attribute__ ((packed))"
