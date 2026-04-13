@@ -14,4 +14,4 @@ junit = { module = "junit:junit", version = "4.13.2" }
 [plugins]
 # com.android.library - Android Gradle Plugin
 # https://developer.android.com/build/gradle-build-overview
-android-library = { id = "com.android.library", version = "9.1.0" }
+android-library = { id = "com.android.library", version = "9.1.1" }
