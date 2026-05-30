@@ -1,12 +1,11 @@
-### 0.10.0
+### 0.11.0
 
-_Released 2026 Mar 23_
+_Released 2026 May 30_
 
 #### Overview
 
-This release bundles SQLite `3.51.3`.
+This release bundles SQLite `3.53.1`.
 
 #### Improvements
 
-- Updated to NDK 29 to support 16KB pages. [[GH-81](https://github.com/Osmerion/sqlite-android/issues/81)]
-- Downgraded to SQLite `3.51.3` as `3.52.0` has been withdrawn.
+- Updated SQLite to `3.53.1`.
