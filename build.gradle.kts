@@ -31,7 +31,7 @@ java {
 android {
     ndkVersion = "29.0.14206865"
 
-    compileSdk = 36
+    compileSdk = 37
 
     namespace = "com.osmerion.android.sqlite"
 
