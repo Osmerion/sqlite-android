@@ -5,9 +5,10 @@
 ![Java](https://img.shields.io/badge/Java-17-green.svg?style=for-the-badge&color=b07219&logo=Java)
 ![Android SDK](https://img.shields.io/badge/Android%20SDK-23-green.svg?style=for-the-badge&color=34A853&logo=Java)
 
-This project is a distribution of the latest versions of SQLite for Android. It implements the [androidx.sqlite](https://developer.android.com/jetpack/androidx/releases/sqlite)
-API for broad compatibility with Android libraries. In many cases, this library can be used as a
-drop-in replacement for the Android platform's built-in SQLite libraries.
+This project is a distribution of the latest versions of [SQLite](https://www.sqlite.org/index.html)
+for Android. It implements the [androidx.sqlite](https://developer.android.com/jetpack/androidx/releases/sqlite) API for broad compatibility with Android
+libraries. In many cases, this library can be used as a drop-in replacement for the Android
+platform's built-in SQLite libraries.
 
 This repository was forked from [requery/sqlite-android](https://github.com/requery/sqlite-android)
 to streamline the build process, which allows us to support newer versions of SQLite faster, and to
